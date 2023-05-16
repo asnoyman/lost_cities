@@ -6,29 +6,29 @@ const type = 'Card';
 const Card = ({ card, index, moveCard }) => {
   const ref = useRef(null);
 
-  // useDrop hook is responsible for handling whether any item gets hovered or dropped on the element
   const [, drop] = useDrop({
-    // Accept will make sure only these element type can be droppable on this element
     accept: type,
-    hover(item) { // item is the dragged element
+    hover(item, monitor) {
       if (!ref.current) {
         return;
       }
       const dragIndex = item.index;
-      // current element where the dragged element is hovered on
       const hoverIndex = index;
-      // If the dragged element is hovered in the same place, then do nothing
-      if (dragIndex === hoverIndex) { 
+      if (dragIndex === hoverIndex) {
         return;
       }
-      // If it is dragged around other elements, then move the image and set the state with position changes
+
+      const hoverBoundingRect = ref.current?.getBoundingClientRect();
+      const hoverMiddleX = (hoverBoundingRect.right - hoverBoundingRect.left) / 2;
+      const clientOffset = monitor.getClientOffset();
+      const hoverClientX = clientOffset.x - hoverBoundingRect.left;
+      if ((dragIndex < hoverIndex) ^ (hoverClientX < hoverMiddleX)) {
+        return;
+      }
+
       moveCard(dragIndex, hoverIndex);
-      /*
-        Update the index for dragged item directly to avoid flickering
-        when the image was half dragged into the next
-      */
       item.index = hoverIndex;
-    }
+    },
   });
 
   // useDrag will be responsible for making an element draggable. It also expose, isDragging method to add any styles while dragging

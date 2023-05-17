@@ -1,4 +1,3 @@
-// import CardZone from '../Components/CardZone';
 import { useCallback, useState } from 'react';
 import YourHand from '../Components/YourHand';
 import redHS from '../Images/redHS.png';
@@ -23,7 +22,16 @@ const Home = () => {
     { id: cuid(), src: blue3 },
   ]);
 
-  const moveCard = useCallback((dragIndex, hoverIndex) => {
+  const [board, setBoard] = useState([{
+    purple: [],
+    white: [],
+    blue: [],
+    red: [],
+    green: [],
+    yellow: [],
+  }]);
+
+  const moveCardInHand = useCallback((dragIndex, hoverIndex) => {
     setYourHand((prevCards) =>
       update(prevCards, {
         $splice: [
@@ -34,24 +42,20 @@ const Home = () => {
     );
   }, []);
 
-  // const onDrop = useCallback((newCards) => {
-  //   newCards.map((file) => {
-  //     const reader = new FileReader();
-  //     reader.onload = function (e) {
-  //       setYourHand((prevState) => [...prevState, { id: cuid(), src: e.target.result }]);
-  //     };
-  //     reader.readAsDataURL(file);
-  //     return file;
-  //   });
-  // }, []);
+  const moveCardToBoard = useCallback((dragIndex, hoverIndex) => {
+    setBoard((prevBoard) =>
+      update(prevBoard, {
+        0: {blue: {$push: [1]}}
+      })
+    );
+  }, []);
 
   return (
     <>
-      {/* <CardZone onDrop={onDrop} /> */}
       <DndProvider backend={HTML5Backend}>
         <OpponentHand />
-        <Board />
-        <YourHand cards={yourHand} moveCard={moveCard} />
+        <Board board={board} moveCard={moveCardToBoard}/>
+        <YourHand cards={yourHand} moveCard={moveCardInHand} />
       </DndProvider>
     </>
   );

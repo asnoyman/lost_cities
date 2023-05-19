@@ -1,30 +1,38 @@
-import React from 'react';
-import { useDropzone } from 'react-dropzone';
+import React, { useCallback } from 'react';
+import { useDrop } from 'react-dnd';
+import Card from './Card';
+import { ItemTypes } from './ItemTypes';
 
-const CardZone = ({ onDrop, accept }) => {
-  // Initializing useDropzone hooks with options
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    onDrop,
-    accept,
+const CardZone = ({ color, cards, moveCardInHand, moveCardToBoard }) => {
+  const [{ canDrop, isOver }, drop] = useDrop({
+    accept: ItemTypes.CARD,
+    drop: () => ({ name: color }),
+    collect: (monitor) => ({
+      isOver: monitor.isOver(),
+      canDrop: monitor.canDrop(),
+    }),
   });
 
-  /* 
-  useDropzone hooks exposes two functions called getRootProps and getInputProps
-  and also exposes isDragActive boolean
-*/
+  const renderCard = useCallback((card, index) => {
+    return (
+      <Card
+        key={card.id}
+        index={index}
+        id={card.id}
+        src={card.src}
+        moveCardInHand={moveCardInHand}
+        moveCardToBoard={moveCardToBoard}
+      />
+    );
+  }, []);
 
+  const borderColor = color === 'white' ? 'black' : color;
   return (
     <>
-      <div className='card-zone-div' {...getRootProps()}>
-        <input className='card-zone-input' {...getInputProps()} />
-        <div className='text-center'>
-          {isDragActive ? (
-            <p className='card-zone-content'>Release to drop the card here</p>
-          ) : (
-            <p className='card-zone-content'>Drag 'n' drop a card here</p>
-          )}
-        </div>
+      <div ref={drop} className='card-zone-div' style={{ borderColor }}>
+        {cards[0] && renderCard(cards[cards.length - 1], 0)}
       </div>
+
     </>
   );
 };

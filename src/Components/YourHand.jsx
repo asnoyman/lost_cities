@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react';
 import Card from './Card';
 
-const YourHand = ({ cards, moveCard }) => {
+const YourHand = ({ cards, moveCardInHand, moveCardToBoard }) => {
   const renderCard = useCallback((card, index) => {
-    return <Card key={card.id} index={index} id={card.id} src={card.src} moveCard={moveCard} />;
+    return <Card key={card.id} index={index} id={card.id} src={card.src} moveCardInHand={moveCardInHand} moveCardToBoard={moveCardToBoard} />;
   }, []);
   return (
     <>

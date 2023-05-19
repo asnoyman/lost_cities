@@ -2,21 +2,50 @@ import React, { useCallback } from 'react';
 import Card from './Card';
 import blue3 from '../Images/blue3.png';
 import { ItemTypes } from './ItemTypes';
+import { useDrop } from 'react-dnd';
+import CardZone from './CardZone';
 
-const Board = ({ board, moveCard }) => {
-  const [, drop] = useDrop({
-    accept: ItemTypes.CARD,
-    drop: () => ({name: 'board'})
-  });
-
-  const renderCard = useCallback((card, index) => {
-    return <Card key={card.id} index={index} id={card.id} src={card.src} moveCard={moveCard} />;
-  }, []);
+const Board = ({ board, moveCardToBoard, moveCardInHand }) => {
 
   return (
     <>
       <div className='board'>
-        {board[0].blue.map((card, i) => renderCard({ id: i, src: blue3 }, i))}
+        <CardZone
+          color={'purple'}
+          cards={board.purple}
+          moveCardToBoard={moveCardToBoard}
+          moveCardInHand={moveCardInHand}
+        />
+        <CardZone
+          color={'blue'}
+          cards={board.blue}
+          moveCardToBoard={moveCardToBoard}
+          moveCardInHand={moveCardInHand}
+        />
+        <CardZone
+          color={'red'}
+          cards={board.red}
+          moveCardToBoard={moveCardToBoard}
+          moveCardInHand={moveCardInHand}
+        />
+        <CardZone
+          color={'white'}
+          cards={board.white}
+          moveCardToBoard={moveCardToBoard}
+          moveCardInHand={moveCardInHand}
+        />
+        <CardZone
+          color={'yellow'}
+          cards={board.yellow}
+          moveCardToBoard={moveCardToBoard}
+          moveCardInHand={moveCardInHand}
+        />
+        <CardZone
+          color={'green'}
+          cards={board.green}
+          moveCardToBoard={moveCardToBoard}
+          moveCardInHand={moveCardInHand}
+        />
       </div>
     </>
   );

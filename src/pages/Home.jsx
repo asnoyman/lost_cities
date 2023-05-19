@@ -22,16 +22,17 @@ const Home = () => {
     { id: cuid(), src: blue3 },
   ]);
 
-  const [board, setBoard] = useState([{
+  const [board, setBoard] = useState({
     purple: [],
     white: [],
-    blue: [],
+    blue: [{ id: cuid(), src: blue3 }],
     red: [],
     green: [],
     yellow: [],
-  }]);
+  });
 
   const moveCardInHand = useCallback((dragIndex, hoverIndex) => {
+    console.log(yourHand, dragIndex)
     setYourHand((prevCards) =>
       update(prevCards, {
         $splice: [
@@ -42,20 +43,22 @@ const Home = () => {
     );
   }, []);
 
-  const moveCardToBoard = useCallback((dragIndex, hoverIndex) => {
-    setBoard((prevBoard) =>
-      update(prevBoard, {
-        0: {blue: {$push: [1]}}
-      })
-    );
+  const moveCardToBoard = useCallback((dragIndex, color) => {
+    console.log(yourHand, dragIndex)
+    setBoard((prevBoard) => update(prevBoard, { [color]: { $push: [yourHand[dragIndex]] } }));
+    setYourHand((prevHand) => update(prevHand, {$splice: [[dragIndex, 1]]}))
   }, []);
 
   return (
     <>
       <DndProvider backend={HTML5Backend}>
         <OpponentHand />
-        <Board board={board} moveCard={moveCardToBoard}/>
-        <YourHand cards={yourHand} moveCard={moveCardInHand} />
+        <Board board={board} moveCardToBoard={moveCardToBoard} moveCardInHand={moveCardInHand} />
+        <YourHand
+          cards={yourHand}
+          moveCardInHand={moveCardInHand}
+          moveCardToBoard={moveCardToBoard}
+        />
       </DndProvider>
     </>
   );

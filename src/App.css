@@ -16,6 +16,7 @@ body {
   margin: 20px auto;
   padding: 10px;
   border: 3px dotted black;
+  min-height: 200px;
 }
 
 .card-list {

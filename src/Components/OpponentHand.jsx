@@ -7,7 +7,7 @@ const OpponentHand = () => {
   const renderCards = useCallback(() => {
     const cards = [];
     for (let i = 0; i < 8; i++) {
-      cards.push(<Card key={`opp-card-i`} index={i} id={cuid()} src={back} moveCard={() => {}} />);
+      cards.push(<Card key={`opp-card-${i}`} index={i} id={cuid()} src={back} moveCard={() => {}} />);
     }
     return cards;
   }, []);

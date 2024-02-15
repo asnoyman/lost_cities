@@ -25,7 +25,7 @@ const Home = () => {
       // If there is no card selected,
       // Set the card that was clicked as selected
       if (loc === "yourHand") {
-        setCardSelected({ id: newHand[idx].id, loc: loc, idx: idx });
+        setCardSelected({ loc: loc, idx: idx });
         newHand[idx].isSelected = SELECTED;
       }
     } else {
@@ -38,11 +38,13 @@ const Home = () => {
         setCardSelected(null);
       } else {
         // If a board space is selected, add card to that space
-        newHand[cardSelected.idx].isSelected = NOT_SELECTED;
-        board[colors[idx]].push(newHand[cardSelected.idx]);
-        newHand.splice(cardSelected.idx, 1)
-        setCardSelected(null);
-        console.log(board)
+        // if the color matches
+        if (newHand[cardSelected.idx].color === colors[idx]) {
+          newHand[cardSelected.idx].isSelected = NOT_SELECTED;
+          board[colors[idx]].push(newHand[cardSelected.idx]);
+          newHand.splice(cardSelected.idx, 1)
+          setCardSelected(null);
+        }
       }
     }
     setYourHand(newHand);

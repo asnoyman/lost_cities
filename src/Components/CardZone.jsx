@@ -1,36 +1,22 @@
-import React, { useCallback } from 'react';
-import { useDrop } from 'react-dnd';
+import React, { useCallback, useState } from 'react';
 import Card from './Card';
-import { ItemTypes } from './ItemTypes';
 
-const CardZone = ({ color, cards, moveCardInHand, moveCardToBoard }) => {
-  const [{ canDrop, isOver }, drop] = useDrop({
-    accept: ItemTypes.CARD,
-    drop: () => ({ name: color }),
-    collect: (monitor) => ({
-      isOver: monitor.isOver(),
-      canDrop: monitor.canDrop(),
-    }),
-  });
+const CardZone = ({ card, toggleClass, idx, loc }) => {
 
-  const renderCard = useCallback((card, index) => {
+  const renderCard = (card) => {
     return (
       <Card
         key={card.id}
-        index={index}
-        id={card.id}
         src={card.src}
-        moveCardInHand={moveCardInHand}
-        moveCardToBoard={moveCardToBoard}
       />
     );
-  }, []);
+  };
 
-  const borderColor = color === 'white' ? 'black' : color;
+  const borderColor = !card || card.color === "white"  ? 'black' : card.color;
   return (
     <>
-      <div ref={drop} className='card-zone-div' style={{ borderColor }}>
-        {cards[0] && renderCard(cards[cards.length - 1], 0)}
+      <div className={card ? card.isSelected : 'card-slot'} style={{ borderColor }} onClick={() => toggleClass(idx, loc)}>
+        {card && renderCard(card)}
       </div>
 
     </>

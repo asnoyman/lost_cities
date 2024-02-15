@@ -1,51 +1,49 @@
-import React, { useCallback } from 'react';
-import Card from './Card';
-import blue3 from '../Images/blue3.png';
-import { ItemTypes } from './ItemTypes';
-import { useDrop } from 'react-dnd';
+import React from 'react';
 import CardZone from './CardZone';
 
-const Board = ({ board, moveCardToBoard, moveCardInHand }) => {
-
+const Board = ({ board, toggleClass }) => {
   return (
     <>
-      <div className='board'>
+      <div className='card-zone'>
+        <div className='card-slot' style={{ borderColor: 'transparent' }} />
         <CardZone
-          color={'purple'}
-          cards={board.purple}
-          moveCardToBoard={moveCardToBoard}
-          moveCardInHand={moveCardInHand}
+          card={board.purple[board.purple.length - 1]}
+          toggleClass={toggleClass}
+          idx={0}
+          loc={"board"}
         />
         <CardZone
-          color={'blue'}
-          cards={board.blue}
-          moveCardToBoard={moveCardToBoard}
-          moveCardInHand={moveCardInHand}
+          card={board.red[board.red.length - 1]}
+          toggleClass={toggleClass}
+          idx={1}
+          loc={"board"}
         />
         <CardZone
-          color={'red'}
-          cards={board.red}
-          moveCardToBoard={moveCardToBoard}
-          moveCardInHand={moveCardInHand}
+          card={board.green[board.green.length - 1]}
+          toggleClass={toggleClass}
+          idx={2}
+          loc={"board"}
         />
         <CardZone
-          color={'white'}
-          cards={board.white}
-          moveCardToBoard={moveCardToBoard}
-          moveCardInHand={moveCardInHand}
+          card={board.blue[board.blue.length - 1]}
+          toggleClass={toggleClass}
+          idx={3}
+          loc={"board"}
         />
         <CardZone
-          color={'yellow'}
-          cards={board.yellow}
-          moveCardToBoard={moveCardToBoard}
-          moveCardInHand={moveCardInHand}
+          card={board.white[board.white.length - 1]}
+          toggleClass={toggleClass}
+          idx={4}
+          loc={"board"}
         />
         <CardZone
-          color={'green'}
-          cards={board.green}
-          moveCardToBoard={moveCardToBoard}
-          moveCardInHand={moveCardInHand}
+          card={board.yellow[board.yellow.length - 1]}
+          toggleClass={toggleClass}
+          idx={5}
+          loc={"board"}
         />
+        
+        <div className='card-slot' style={{ borderColor: 'transparent' }} />
       </div>
     </>
   );

@@ -1,13 +1,18 @@
 import React, { useCallback } from 'react';
-import Card from './Card';
+import CardZone from './CardZone';
 
-const YourHand = ({ cards, moveCardInHand, moveCardToBoard }) => {
-  const renderCard = useCallback((card, index) => {
-    return <Card key={card.id} index={index} id={card.id} src={card.src} moveCardInHand={moveCardInHand} moveCardToBoard={moveCardToBoard} />;
-  }, []);
+const YourHand = ({ cards, toggleClass }) => {
+  const renderCards = () => {
+    const formatted_cards = [];
+    for (let i = 0; i < 8; i++) {
+      const card = i < cards.length ? cards[i] : null
+      formatted_cards.push(<CardZone key={"yourCard" + i} card={card} toggleClass={toggleClass} idx={i} loc={'yourHand'} />);
+    }
+    return formatted_cards;
+  };
   return (
     <>
-      <div className='card-list'>{cards.map((card, i) => renderCard(card, i))}</div>
+      <div className='card-zone'>{renderCards()}</div>
     </>
   );
 };

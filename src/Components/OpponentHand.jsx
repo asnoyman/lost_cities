@@ -1,19 +1,19 @@
 import React, { useCallback } from 'react';
-import Card from './Card';
 import back from '../Images/back.png';
 import cuid from 'cuid';
+import CardZone from './CardZone';
 
 const OpponentHand = () => {
   const renderCards = useCallback(() => {
     const cards = [];
     for (let i = 0; i < 8; i++) {
-      cards.push(<Card key={`opp-card-${i}`} index={i} id={cuid()} src={back} moveCard={() => {}} />);
+      cards.push(<CardZone key={"oppCard" + i} card={{src: back, id: cuid(), isSelected: 'card-slot', color: "black", number: -1}} className={'card-slot'} toggleClass={() => {}}/>);
     }
     return cards;
   }, []);
   return (
     <>
-      <div className='card-list'>{renderCards()}</div>
+      <div className='card-zone'>{renderCards()}</div>
     </>
   );
 };

@@ -1,46 +1,46 @@
 import React from 'react';
 import CardZone from './CardZone';
 
-const Board = ({ board, toggleClass }) => {
+const PlayAreaOpp = ({ cards, toggleClass }) => {
   return (
     <>
       <div className='card-zone'>
         <div className='card-slot' style={{ borderColor: 'transparent' }} />
         <CardZone
-          card={board.purple[board.purple.length - 1]}
+          card={cards.purple[cards.purple.length - 1]}
           toggleClass={toggleClass}
           idx={0}
-          loc={"board"}
+          loc={"PlayAreaOpp"}
         />
         <CardZone
-          card={board.red[board.red.length - 1]}
+          card={cards.red[cards.red.length - 1]}
           toggleClass={toggleClass}
           idx={1}
-          loc={"board"}
+          loc={"PlayAreaOpp"}
         />
         <CardZone
-          card={board.green[board.green.length - 1]}
+          card={cards.green[cards.green.length - 1]}
           toggleClass={toggleClass}
           idx={2}
-          loc={"board"}
+          loc={"PlayAreaOpp"}
         />
         <CardZone
-          card={board.blue[board.blue.length - 1]}
+          card={cards.blue[cards.blue.length - 1]}
           toggleClass={toggleClass}
           idx={3}
-          loc={"board"}
+          loc={"PlayAreaOpp"}
         />
         <CardZone
-          card={board.white[board.white.length - 1]}
+          card={cards.white[cards.white.length - 1]}
           toggleClass={toggleClass}
           idx={4}
-          loc={"board"}
+          loc={"PlayAreaOpp"}
         />
         <CardZone
-          card={board.yellow[board.yellow.length - 1]}
+          card={cards.yellow[cards.yellow.length - 1]}
           toggleClass={toggleClass}
           idx={5}
-          loc={"board"}
+          loc={"PlayAreaOpp"}
         />
         
         <div className='card-slot' style={{ borderColor: 'transparent' }} />
@@ -49,4 +49,4 @@ const Board = ({ board, toggleClass }) => {
   );
 };
 
-export default Board;
+export default PlayAreaOpp;

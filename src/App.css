@@ -16,23 +16,15 @@ body {
 .card-slot {
   text-align: center;
   border: 3px dashed;
-  width: 100%;
   margin: auto;
-  min-height: 100px;
 }
 
 .card-slot-selected {
   text-align: center;
   border: 10px double;
-  width: 100%;
   margin: auto;
-  min-height: 100px;
 }
 
-.card-slot img {
-  width: 100%;
-}
-
-.card-slot-selected img {
-  width: 100%;
+.card-slot img, .card-slot-selected img {
+  width: 90px;
 }

@@ -6,7 +6,7 @@ const YourHand = ({ cards, toggleClass }) => {
     const formatted_cards = [];
     for (let i = 0; i < 8; i++) {
       const card = i < cards.length ? cards[i] : null
-      formatted_cards.push(<CardZone key={"yourCard" + i} card={card} toggleClass={toggleClass} idx={i} loc={'yourHand'} />);
+      formatted_cards.push(<CardZone key={"yourCard" + i} card={card} toggleClass={toggleClass} idx={i} loc={'YourHand'} />);
     }
     return formatted_cards;
   };

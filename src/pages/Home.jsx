@@ -22,37 +22,54 @@ const Home = () => {
 
   const toggleClass = (idx, loc) => {
     const newHand = [...yourHand];
-    if (!cardSelected) {
-      // If there is no card selected,
-      // Set the card that was clicked as selected
-      if (loc === "YourHand") {
-        setCardSelected({ loc: loc, idx: idx });
-        newHand[idx].isSelected = SELECTED;
-      }
-    } else {
-      if (loc === "YourHand") {
-        // If a different card in your hand was selected
-        const temp = newHand[cardSelected.idx];
-        newHand[cardSelected.idx].isSelected = NOT_SELECTED;
-        newHand[cardSelected.idx] = newHand[idx];
-        newHand[idx] = temp;
-        setCardSelected(null);
-      } else if (loc === "Discard") {
-        // If a board space is selected, add card to that space
-        // if the color matches
-        if (newHand[cardSelected.idx].color === colors[idx]) {
-          newHand[cardSelected.idx].isSelected = NOT_SELECTED;
-          discard[colors[idx]].push(newHand[cardSelected.idx]);
-          newHand.splice(cardSelected.idx, 1)
-          setCardSelected(null);
+    if (gameState === PLAY_CARD) {
+      if (!cardSelected) {
+        // If there is no card selected,
+        // Set the card that was clicked as selected
+        if (loc === "YourHand") {
+          setCardSelected({ loc: loc, idx: idx });
+          newHand[idx].isSelected = SELECTED;
         }
-      } else if (loc === "PlayAreaYou") {
-        if (newHand[cardSelected.idx].color === colors[idx] && newHand[cardSelected.idx].number >= playAreaYou[colors[idx]][playAreaYou[colors[idx]].length - 1].number) {
+      } else {
+        if (loc === "YourHand") {
+          // If a different card in your hand was selected
+          const temp = newHand[cardSelected.idx];
           newHand[cardSelected.idx].isSelected = NOT_SELECTED;
-          playAreaYou[colors[idx]].push(newHand[cardSelected.idx]);
-          newHand.splice(cardSelected.idx, 1)
+          newHand[cardSelected.idx] = newHand[idx];
+          newHand[idx] = temp;
           setCardSelected(null);
+        } else if (loc === "Discard") {
+          // If a board space is selected, add card to that space
+          // if the color matches
+          if (newHand[cardSelected.idx].color === colors[idx]) {
+            newHand[cardSelected.idx].isSelected = NOT_SELECTED;
+            discard[colors[idx]].push(newHand[cardSelected.idx]);
+            newHand.splice(cardSelected.idx, 1)
+            setCardSelected(null);
+            setGameState(DRAW_CARD);
+          }
+        } else if (loc === "PlayAreaYou") {
+          if (newHand[cardSelected.idx].color === colors[idx] && newHand[cardSelected.idx].number >= playAreaYou[colors[idx]][playAreaYou[colors[idx]].length - 1].number) {
+            newHand[cardSelected.idx].isSelected = NOT_SELECTED;
+            playAreaYou[colors[idx]].push(newHand[cardSelected.idx]);
+            newHand.splice(cardSelected.idx, 1)
+            setCardSelected(null);
+            setGameState(DRAW_CARD);
+          }
         }
+      } 
+    } else if (gameState === DRAW_CARD) {
+      if (loc === "Discard") {
+        const card = discard[colors[idx]].pop()
+        if (card.number === -1) {
+          discard[colors[idx]].push(card)
+        } else {
+          newHand.push(card)
+          setGameState(PLAY_CARD);
+        }
+      } else if (loc === "Draw") {
+        newHand.push({ id: cuid(), src: redHS, isSelected: NOT_SELECTED, color: "red", number: 0})
+        setGameState(PLAY_CARD);
       }
     }
     setYourHand(newHand);

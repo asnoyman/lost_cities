@@ -14,17 +14,20 @@ body {
 }
 
 .card-slot {
-  text-align: center;
   border: 3px dashed;
   margin: auto;
 }
 
 .card-slot-selected {
-  text-align: center;
   border: 10px double;
   margin: auto;
 }
 
 .card-slot img, .card-slot-selected img {
   width: 90px;
+}
+
+.empty-pile {
+  width: 90px;
+  height: 150px;
 }

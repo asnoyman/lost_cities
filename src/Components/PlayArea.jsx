@@ -5,7 +5,12 @@ const PlayArea = ({ cards, toggleClass }) => {
   return (
     <>
       <div className='card-zone'>
-        <div className='card-slot' style={{ borderColor: 'transparent' }} />
+        <CardZone
+          card={{id: "Invisible", src: "transparent", isSelected: 'card-slot', color: "transparent", number: -1}}
+          toggleClass={toggleClass}
+          idx={-1}
+          loc={"N/A"}
+        />
         <CardZone
           card={cards.purple[cards.purple.length - 1]}
           toggleClass={toggleClass}
@@ -42,8 +47,12 @@ const PlayArea = ({ cards, toggleClass }) => {
           idx={5}
           loc={"PlayAreaYou"}
         />
-        
-        <div className='card-slot' style={{ borderColor: 'transparent' }} />
+        <CardZone
+          card={{id: "Invisible", src: "transparent", isSelected: 'card-slot', color: "transparent", number: -1}}
+          toggleClass={toggleClass}
+          idx={6}
+          loc={"N/A"}
+        />
       </div>
     </>
   );

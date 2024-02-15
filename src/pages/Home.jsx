@@ -8,7 +8,6 @@ import OpponentHand from '../Components/OpponentHand';
 import Discard from '../Components/Discard';
 import PlayArea from '../Components/PlayArea';
 import PlayAreaOpp from '../Components/PlayAreaOpp';
-import back from '../Images/back.png';
 
 const Home = () => {
   const SELECTED = 'card-slot-selected';
@@ -73,28 +72,28 @@ const Home = () => {
   ]);
 
   const [discard, setDiscard] = useState({
-    purple: [{ id: cuid(), src: back, isSelected: NOT_SELECTED, color: "purple", number: -1}],
-    white: [{ id: cuid(), src: back, isSelected: NOT_SELECTED, color: "white", number: -1}],
-    blue: [{ id: cuid(), src: back, isSelected: NOT_SELECTED, color: "blue", number: -1}],
-    red: [{ id: cuid(), src: back, isSelected: NOT_SELECTED, color: "red", number: -1}],
-    green: [{ id: cuid(), src: back, isSelected: NOT_SELECTED, color: "green", number: -1}],
-    yellow: [{ id: cuid(), src: back, isSelected: NOT_SELECTED, color: "yellow", number: -1}],
+    purple: [{ id: cuid(), src: "purple", isSelected: NOT_SELECTED, color: "purple", number: -1}],
+    white: [{ id: cuid(), src: "white", isSelected: NOT_SELECTED, color: "white", number: -1}],
+    blue: [{ id: cuid(), src: "blue", isSelected: NOT_SELECTED, color: "blue", number: -1}],
+    red: [{ id: cuid(), src: "red", isSelected: NOT_SELECTED, color: "red", number: -1}],
+    green: [{ id: cuid(), src: "green", isSelected: NOT_SELECTED, color: "green", number: -1}],
+    yellow: [{ id: cuid(), src: "yellow", isSelected: NOT_SELECTED, color: "yellow", number: -1}],
   });
   const [playAreaYou, setPlayAreaYou] = useState({
-    purple: [{ id: cuid(), src: back, isSelected: NOT_SELECTED, color: "purple", number: -1}],
-    white: [{ id: cuid(), src: back, isSelected: NOT_SELECTED, color: "white", number: -1}],
-    blue: [{ id: cuid(), src: back, isSelected: NOT_SELECTED, color: "blue", number: -1}],
-    red: [{ id: cuid(), src: back, isSelected: NOT_SELECTED, color: "red", number: -1}],
-    green: [{ id: cuid(), src: back, isSelected: NOT_SELECTED, color: "green", number: -1}],
-    yellow: [{ id: cuid(), src: back, isSelected: NOT_SELECTED, color: "yellow", number: -1}],
+    purple: [{ id: cuid(), src: "purple", isSelected: NOT_SELECTED, color: "purple", number: -1}],
+    white: [{ id: cuid(), src: "white", isSelected: NOT_SELECTED, color: "white", number: -1}],
+    blue: [{ id: cuid(), src: "blue", isSelected: NOT_SELECTED, color: "blue", number: -1}],
+    red: [{ id: cuid(), src: "red", isSelected: NOT_SELECTED, color: "red", number: -1}],
+    green: [{ id: cuid(), src: "green", isSelected: NOT_SELECTED, color: "green", number: -1}],
+    yellow: [{ id: cuid(), src: "yellow", isSelected: NOT_SELECTED, color: "yellow", number: -1}],
   });
   const [playAreaOpp, setPlayAreaOpp] = useState({
-    purple: [{ id: cuid(), src: back, isSelected: NOT_SELECTED, color: "purple", number: -1}],
-    white: [{ id: cuid(), src: back, isSelected: NOT_SELECTED, color: "white", number: -1}],
-    blue: [{ id: cuid(), src: back, isSelected: NOT_SELECTED, color: "blue", number: -1}],
-    red: [{ id: cuid(), src: back, isSelected: NOT_SELECTED, color: "red", number: -1}],
-    green: [{ id: cuid(), src: back, isSelected: NOT_SELECTED, color: "green", number: -1}],
-    yellow: [{ id: cuid(), src: back, isSelected: NOT_SELECTED, color: "yellow", number: -1}],
+    purple: [{ id: cuid(), src: "purple", isSelected: NOT_SELECTED, color: "purple", number: -1}],
+    white: [{ id: cuid(), src: "white", isSelected: NOT_SELECTED, color: "white", number: -1}],
+    blue: [{ id: cuid(), src: "blue", isSelected: NOT_SELECTED, color: "blue", number: -1}],
+    red: [{ id: cuid(), src: "red", isSelected: NOT_SELECTED, color: "red", number: -1}],
+    green: [{ id: cuid(), src: "green", isSelected: NOT_SELECTED, color: "green", number: -1}],
+    yellow: [{ id: cuid(), src: "yellow", isSelected: NOT_SELECTED, color: "yellow", number: -1}],
   });
 
   return (

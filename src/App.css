@@ -4,30 +4,37 @@ body {
 
 .card-zone {
   display: flex;
-  flex-wrap: nowrap;
-  max-width: 80%;
-  margin: auto;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  padding: 10px;
+  max-width: 90%;
+  height: 300px;
+  margin: 10px auto;
+  padding: 0px 10px;
   border: 3px dotted;
+  justify-content: center;
+  align-items: center;
 }
 
 .card-slot {
   border: 3px dashed;
   margin: auto;
+  width: min-content;
 }
 
 .card-slot-selected {
   border: 10px double;
   margin: auto;
+  width: min-content;
 }
 
 .card-slot img, .card-slot-selected img {
-  width: 80px;
+  width: 100px;
+}
+
+.card-slot div:not(:last-child), .card-slot-selected div:not(:last-child) {
+  overflow: hidden;
+  height: 15px;
 }
 
 .empty-pile {
-  width: 80px;
-  height: 130px;
+  width: 100px;
+  height: 150px;
 }

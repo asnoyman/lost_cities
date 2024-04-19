@@ -33,6 +33,7 @@ const Home = () => {
       } else {
         if (loc === "YourHand") {
           // If a different card in your hand was selected
+          // Switch the positions of the two cards
           const temp = newHand[cardSelected.idx];
           newHand[cardSelected.idx].isSelected = NOT_SELECTED;
           newHand[cardSelected.idx] = newHand[idx];
@@ -40,15 +41,18 @@ const Home = () => {
           setCardSelected(null);
         } else if (loc === "Discard") {
           // If a board space is selected, add card to that space
-          // if the color matches
           if (newHand[cardSelected.idx].color === colors[idx]) {
             newHand[cardSelected.idx].isSelected = NOT_SELECTED;
             discard[colors[idx]].push(newHand[cardSelected.idx]);
-            newHand.splice(cardSelected.idx, 1)
+            console.log(newHand[cardSelected.idx]);
+            console.log(discard);
+            newHand.splice(cardSelected.idx, 1);
+            console.log(newHand);
             setCardSelected(null);
             setGameState(DRAW_CARD);
           }
         } else if (loc === "PlayAreaYou") {
+          // If a board space is selected, add card to that space
           if (newHand[cardSelected.idx].color === colors[idx] && newHand[cardSelected.idx].number >= playAreaYou[colors[idx]][playAreaYou[colors[idx]].length - 1].number) {
             newHand[cardSelected.idx].isSelected = NOT_SELECTED;
             playAreaYou[colors[idx]].push(newHand[cardSelected.idx]);

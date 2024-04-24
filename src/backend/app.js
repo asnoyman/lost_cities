@@ -2,8 +2,8 @@ const express = require("express");
 const app = express();
 
 const cards = [
-  { id: 1, src: "../Images/blue2.png", isSelected: 'card-slot', color: "blue", number: 2},
-  { id: 2, src: '../Images/blue7.png', isSelected: 'card-slot', color: "blue", number: 7},
+  { src: "/Images/blue2.png", isSelected: 'card-slot', color: "blue", number: 2},
+  { src: '/Images/blue7.png', isSelected: 'card-slot', color: "blue", number: 7},
 ];
 
 app.use(function(req, res, next) {

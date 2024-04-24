@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import YourHand from '../Components/YourHand';
-import redHS from '../Images/redHS.png';
-import blue2 from '../Images/blue2.png';
-import blue3 from '../Images/blue3.png';
-import blue7 from '../Images/blue7.png';
-import white10 from '../Images/white10.png';
+// import redHS from '../Images/redHS.png';
+// import blue2 from '../Images/blue2.png';
+// import blue3 from '../Images/blue3.png';
+// import blue7 from '../Images/blue7.png';
+// import white10 from '../Images/white10.png';
 import cuid from 'cuid';
 import OpponentHand from '../Components/OpponentHand';
 import Discard from '../Components/Discard';
@@ -74,11 +74,9 @@ const Home = () => {
           setGameState(PLAY_CARD);
         }
       } else if (loc === "Draw") {
-        // const response = await fetch('http://localhost:3001/card');
-        // const new_card = await response.json();
-        // console.log(new_card)
-        // newHand.push(new_card)
-        newHand.push({ id: cuid(), src: redHS, isSelected: NOT_SELECTED, color: "red", number: 0})
+        const response = await fetch('http://localhost:3001/card');
+        const new_card = await response.json();
+        newHand.push({...new_card, id: cuid()})
         setGameState(PLAY_CARD);
       }
     }
@@ -88,26 +86,15 @@ const Home = () => {
   };
 
   const [yourHand, setYourHand] = useState([
-    { id: cuid(), src: redHS, isSelected: NOT_SELECTED, color: "red", number: 0},
-    { id: cuid(), src: blue3, isSelected: NOT_SELECTED, color: "blue", number: 3},
-    { id: cuid(), src: white10, isSelected: NOT_SELECTED, color: "white", number: 10},
-    { id: cuid(), src: redHS, isSelected: NOT_SELECTED, color: "red", number: 0},
-    { id: cuid(), src: blue2, isSelected: NOT_SELECTED, color: "blue", number: 2},
-    { id: cuid(), src: white10, isSelected: NOT_SELECTED, color: "white", number: 10},
-    { id: cuid(), src: redHS, isSelected: NOT_SELECTED, color: "red", number: 0},
-    { id: cuid(), src: blue7, isSelected: NOT_SELECTED, color: "blue", number: 7},
-  ]);
-
-  // const [yourHand, setYourHand] = useState([
-  //     { id: cuid(), src: '../Images/redHS.png', isSelected: NOT_SELECTED, color: "red", number: 0},
-  //     { id: cuid(), src: '../Images/redHS.png', isSelected: NOT_SELECTED, color: "red", number: 0},
-  //     { id: cuid(), src: '../Images/redHS.png', isSelected: NOT_SELECTED, color: "red", number: 0},
-  //     { id: cuid(), src: '../Images/redHS.png', isSelected: NOT_SELECTED, color: "red", number: 0},
-  //     { id: cuid(), src: '../Images/redHS.png', isSelected: NOT_SELECTED, color: "red", number: 0},
-  //     { id: cuid(), src: '../Images/redHS.png', isSelected: NOT_SELECTED, color: "red", number: 0},
-  //     { id: cuid(), src: '../Images/redHS.png', isSelected: NOT_SELECTED, color: "red", number: 0},
-  //     { id: cuid(), src: '../Images/redHS.png', isSelected: NOT_SELECTED, color: "red", number: 0},
-  //   ]);
+      { id: cuid(), src: `/Images/redHS.png`, isSelected: NOT_SELECTED, color: "red", number: 0},
+      { id: cuid(), src: `/Images/redHS.png`, isSelected: NOT_SELECTED, color: "red", number: 0},
+      { id: cuid(), src: `/Images/redHS.png`, isSelected: NOT_SELECTED, color: "red", number: 0},
+      { id: cuid(), src: `/Images/redHS.png`, isSelected: NOT_SELECTED, color: "red", number: 0},
+      { id: cuid(), src: `/Images/redHS.png`, isSelected: NOT_SELECTED, color: "red", number: 0},
+      { id: cuid(), src: `/Images/redHS.png`, isSelected: NOT_SELECTED, color: "red", number: 0},
+      { id: cuid(), src: `/Images/redHS.png`, isSelected: NOT_SELECTED, color: "red", number: 0},
+      { id: cuid(), src: `/Images/redHS.png`, isSelected: NOT_SELECTED, color: "red", number: 0},
+    ]);
 
   const [discard, setDiscard] = useState({
     purple: [{ id: cuid(), src: "purple", isSelected: NOT_SELECTED, color: "purple", number: -1}],

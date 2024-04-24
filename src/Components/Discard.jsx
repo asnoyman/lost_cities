@@ -1,6 +1,5 @@
 import React from 'react';
 import CardZoneMulti from './CardZoneMulti';
-import back from '../Images/back.png';
 
 const Discard = ({ discard, toggleClass }) => {
   return (
@@ -49,7 +48,7 @@ const Discard = ({ discard, toggleClass }) => {
           loc={"Discard"}
         />
         <CardZoneMulti
-          cards={[{id: "DrawPile", src: back, isSelected: 'card-slot', color: "black", number: -1}]}
+          cards={[{id: "DrawPile", src: "/Images/back.png", isSelected: 'card-slot', color: "black", number: -1}]}
           toggleClass={toggleClass}
           idx={6}
           loc={"Draw"}

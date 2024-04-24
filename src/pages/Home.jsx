@@ -1,10 +1,5 @@
 import { useState } from 'react';
 import YourHand from '../Components/YourHand';
-// import redHS from '../Images/redHS.png';
-// import blue2 from '../Images/blue2.png';
-// import blue3 from '../Images/blue3.png';
-// import blue7 from '../Images/blue7.png';
-// import white10 from '../Images/white10.png';
 import cuid from 'cuid';
 import OpponentHand from '../Components/OpponentHand';
 import Discard from '../Components/Discard';
